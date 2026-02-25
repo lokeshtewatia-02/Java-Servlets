@@ -1,0 +1,27 @@
+body{
+	color:Red;
+	
+	background:#212121
+	
+	
+	
+}
+
+.container{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.menu_container ul{
+	list-style-type: none;
+	display: flex;
+	
+}
+.menu_container ul li a{
+	
+	color: white;
+	margin: 5px 10px;
+	
+}
