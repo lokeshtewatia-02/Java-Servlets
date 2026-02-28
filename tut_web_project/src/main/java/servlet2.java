@@ -5,7 +5,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter; // <--- YE ZARURI HAI
+import java.io.PrintWriter; 
 
 @WebServlet("/servlet2")
 public class servlet2 extends HttpServlet {
@@ -16,10 +16,9 @@ public class servlet2 extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // 1. Browser ko batao ki HTML bhej rahe ho
+     
         response.setContentType("text/html");
 
-        // 2. 'out' ko yahan define karo (Sabse important step)
         PrintWriter out = response.getWriter();
         
         Cookie[] cookies=request.getCookies();
@@ -48,7 +47,6 @@ public class servlet2 extends HttpServlet {
 
        if(f) {
         
-        // 4. Output print karo
         out.println("<h1>Hello , " + name + " welcome back to my website...</h1>");
         out.println("<h1>Thankyou</h1>");
        }else
