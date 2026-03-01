@@ -24,16 +24,27 @@
            <div class="card-content">
            
            <h3 style="margin-top: 10px" class="center-align">Register here !!</h3>
+           <h5 id='msg' class ='center-align ' ></h5>
+           
            
            
                <div class="form center-align">
               
                
-               <form action="Register" method="post">
+           <form action="RegisterServlet" method="post" id="myform" enctype="multipart/form-data">
                <input type="text" name="user_name" placeholder="Enter user Name" />
                <input type="password" name="user_password" placeholder="Enter user Password" />
                <input type="email" name="user_email" placeholder="Enter user Email" />
                
+                    <div class="file-field input-field">
+      <div class="btn blue">
+        <span>File</span>
+        <input name="image"  type="file">
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text">
+      </div>
+    </div> 
                        
                         <button type="Submit" class="btn light-blue">Submit</button>
                
@@ -115,10 +126,67 @@
   crossorigin="anonymous"></script>
   
   <script>
-  $(document).ready(function)() {
+  $(document).ready(function () {
 	  
 	  console.log("page is ready....")
-  }
+	  
+	  $("#myform").on('submit',function(event){
+		  event.preventDefault();
+		  
+		  //var f=$(this).serialize();
+		  let f=new FormData(this);
+		  
+		  console.log(f);
+		  
+		  $(".loader").show();
+		  $(".form").hide();
+		  
+		  
+		  
+		  
+		  $.ajax({
+			  url: "RegisterServlet",
+		  data: f,
+		  type: 'POST',
+		  success: function(data,textStatus,jqHXR){
+			  
+			  console.log(data);
+			  console.log("success");
+			  
+			  if(data.trim()=="done")
+				  {
+				  $('#msg').html("Succesfully Registered !!")
+				$('#msg').addClass('green-text')
+				  
+				  }else{
+				  $('#msg').html("Something Went Wrong!!")
+				  $('#msg').addClass('red-text')
+			  }     
+			  $(".loader").hide();
+			  $(".form").show();
+			  
+			  
+		  },
+		 error: function(jqHXR,textStatus,errorThrown){
+			 console.log(data);
+			 console.log("error.....");
+			 
+			 $(".loader").hide();
+			  $(".form").show();
+			  $('#msg').html("Something went wrong on server !!")
+			  
+			  
+		 }  
+		  
+		  processData: false,
+			  contentType: false;
+			  
+		  });
+		  
+	  });
+	  
+	  });
+  
   
   </script>
    
