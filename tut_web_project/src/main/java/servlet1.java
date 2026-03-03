@@ -21,7 +21,7 @@ public class servlet1 extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         
-        String name = request.getParameter("name");
+        String name = request.getParameter("user_name");
         
         out.println("<h1>Hello , " + name + " welcome to my website...</h1>");
         out.println("<h1><a href='servlet2'>Go to servlet 2</a></h1>");
